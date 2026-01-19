@@ -1,0 +1,17 @@
+{
+  "name": "humanitarian-intelligence-platform-nigeria",
+  "version": "0.1.0",
+  "description": "Humanitarian Intelligence Platform (HIP) - Nigerian Edition - Data-Driven Crisis Response System",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": ["humanitarian", "nigeria", "aid", "dashboard"],
+  "author": "",
+  "license": "MIT"
+}

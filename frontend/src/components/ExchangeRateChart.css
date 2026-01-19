@@ -1,0 +1,30 @@
+.exchange-chart {
+  width: 100%;
+}
+
+.chart-header {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.current-rate {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2a5298;
+  margin-bottom: 0.25rem;
+}
+
+.data-source {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+
+.chart-note {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  text-align: center;
+}

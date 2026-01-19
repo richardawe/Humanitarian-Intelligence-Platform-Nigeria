@@ -1,0 +1,75 @@
+.expandable-card {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  transition: all 0.2s;
+}
+
+.expandable-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.expandable-card.expanded {
+  box-shadow: var(--shadow-md);
+}
+
+.expandable-header {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.expandable-header:hover {
+  background: var(--bg-tertiary);
+}
+
+.expandable-title h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.expandable-summary {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.expand-toggle {
+  background: transparent;
+  border: none;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.expandable-card.expanded .expand-toggle {
+  transform: rotate(90deg);
+}
+
+.expandable-content {
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
