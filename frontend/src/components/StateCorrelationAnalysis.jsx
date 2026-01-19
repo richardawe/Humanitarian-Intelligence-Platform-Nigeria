@@ -84,10 +84,64 @@ function StateCorrelationAnalysis({ humanitarianData }) {
     }
   ] : []
 
+  // Calculate direct correlation: Food Inflation vs Displacement
+  const inflationDisplacementCorr = displacementAnalysis.correlations?.foodInflation || {}
+  const conflictDisplacementCorr = displacementAnalysis.correlations?.conflict || {}
+
   return (
     <div className="state-correlation-analysis">
-      <h2>📊 State-Level Factor Correlation Analysis</h2>
+      <div className="correlation-header">
+        <h2>📊 State-Level Factor Correlation Analysis</h2>
+        <p className="correlation-subtitle">
+          Understanding links between inflation, conflict, poverty and humanitarian crises
+          <InfoTooltip
+            title="Correlation Analysis"
+            definition="This analysis uses Pearson correlation coefficient to measure relationships between state-level factors (food inflation, poverty, conflict, import dependence, infrastructure) and humanitarian indicators (food insecurity, displacement). Correlation doesn't imply causation, but helps identify key drivers."
+            content="Methodology: Pearson correlation coefficient (r), significance testing at p < 0.05. Data sources: NBS, UNOCHA, WFP, ACLED."
+          />
+        </p>
+      </div>
       
+      {/* Key Correlations Highlight */}
+      <div className="key-correlations-highlight">
+        <div className="correlation-highlight-card">
+          <h3>🔄 Food Inflation ↔ Displacement</h3>
+          <div className="correlation-value" style={{ color: getCorrelationColor(inflationDisplacementCorr.coefficient || 0) }}>
+            r = {(inflationDisplacementCorr.coefficient || 0).toFixed(3)}
+          </div>
+          <div className="correlation-interpretation">
+            {inflationDisplacementCorr.interpretation || 'Analyzing correlation...'}
+          </div>
+          <p className="correlation-explanation">
+            <strong>Link:</strong> Higher food inflation correlates with increased displacement as economic pressures 
+            force people to leave their homes. This connection is particularly strong in states where conflict 
+            compounds economic hardship.
+          </p>
+          <div className="correlation-citation">
+            <strong>Source:</strong> NBS Food Inflation Data, UNOCHA Displacement Reports, 
+            <a href="https://acleddata.com/" target="_blank" rel="noopener noreferrer"> ACLED</a>
+          </div>
+        </div>
+        
+        <div className="correlation-highlight-card">
+          <h3>⚔️ Conflict ↔ Displacement</h3>
+          <div className="correlation-value" style={{ color: getCorrelationColor(conflictDisplacementCorr.coefficient || 0) }}>
+            r = {(conflictDisplacementCorr.coefficient || 0).toFixed(3)}
+          </div>
+          <div className="correlation-interpretation">
+            {conflictDisplacementCorr.interpretation || 'Analyzing correlation...'}
+          </div>
+          <p className="correlation-explanation">
+            <strong>Link:</strong> Conflict intensity is the strongest predictor of displacement. States with active 
+            insurgency, banditry, or farmer-herder conflicts show significantly higher IDP populations.
+          </p>
+          <div className="correlation-citation">
+            <strong>Source:</strong> ACLED Conflict Data, UNHCR IDP Statistics, 
+            <a href="https://data.humdata.org/organization/ocha" target="_blank" rel="noopener noreferrer"> UNOCHA</a>
+          </div>
+        </div>
+      </div>
+
       <ExpandableCard
         title="📖 Understanding State-Level Correlations"
         summary="Analyzes which state-varying factors (food inflation, poverty, conflict, etc.) correlate most with humanitarian indicators"
@@ -118,6 +172,10 @@ function StateCorrelationAnalysis({ humanitarianData }) {
               States with high conflict correlation need security interventions, while those with high food inflation 
               correlation need economic/food price stabilization measures.
             </p>
+            <div className="methodology-citation">
+              <strong>Methodology:</strong> Pearson correlation coefficient with significance testing. 
+              <strong>Data Sources:</strong> National Bureau of Statistics (NBS), UNOCHA, WFP, UNHCR, ACLED, UNDP.
+            </div>
           </div>
         }
       />

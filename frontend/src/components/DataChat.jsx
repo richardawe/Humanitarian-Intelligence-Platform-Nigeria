@@ -17,7 +17,7 @@ function DataChat({ data }) {
     if (messages.length === 0) {
       setMessages([{
         role: 'assistant',
-        content: '👋 Hello! I can help you explore the humanitarian data for Nigeria. Ask me questions like:\n\n• "Which states have the highest food insecurity?"\n• "Show me conflict data for Borno"\n• "What is the vulnerability score for Lagos?"\n• "Compare poverty levels across regions"\n\nHow can I help you?'
+        content: '👋 Hello! I can help you explore the humanitarian data for Nigeria. Ask me questions like:\n\n• "Which states have the highest food insecurity?"\n• "Show me flooding data for Rivers state"\n• "What is the vulnerability score for Borno?"\n• "How many people are affected by flooding in Nigeria?"\n• "Compare climate shocks across different states"\n• "What are the main climate risks in Delta state?"\n• "Which states have both high conflict and high flood risk?"\n• "Show me the correlation between food inflation and displacement"\n\nHow can I help you?'
       }])
     }
   }, [])
@@ -59,7 +59,24 @@ ${generateDataSummary(ragContext.dataIndex)}
 
 ${ragContext.context ? `\nRelevant Context for this query:\n${ragContext.context}` : ''}
 
-Please provide accurate, helpful answers based on this data. If you don't have specific data, say so clearly. Format your responses clearly with bullet points or numbered lists when appropriate.`;
+**Available Data Types:**
+- States and Population: All 37 Nigerian states with population data
+- Humanitarian Indicators: Food insecurity %, IDP displacement, health risk levels
+- State-Level Factors: Food inflation, poverty (HDI/MPI), conflict intensity, import dependence, infrastructure quality (HDI-based)
+- Climate Indicators: Flooding risk and impact (3-5 million affected in 2024-2025), climate shocks (drought, extreme heat, variability)
+- Vulnerability Index: Composite 0-100 score combining all factors
+- Correlations: Links between inflation-displacement, conflict-displacement, and other factors
+
+**Data Sources:**
+- UNOCHA, WFP, UNHCR for humanitarian data
+- NBS (National Bureau of Statistics) for food inflation
+- UNDP for HDI and poverty data
+- ACLED for conflict data
+- NEMA for climate/flooding data
+
+**Note:** Total flooding affected population is 3-5 million across Nigeria (2024-2025). When users ask about climate or flooding, provide specific state-level data when available.
+
+Please provide accurate, helpful answers based on this data. If you don't have specific data, say so clearly. Format your responses clearly with bullet points or numbered lists when appropriate. Include data citations when referencing specific statistics.`;
 
       // Prepare messages for API
       const apiMessages = [
@@ -155,7 +172,7 @@ Please provide accurate, helpful answers based on this data. If you don't have s
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask about states, food insecurity, displacement, vulnerability..."
+          placeholder="Ask about states, food insecurity, displacement, vulnerability, climate, flooding..."
           disabled={loading}
           className="chat-input"
         />

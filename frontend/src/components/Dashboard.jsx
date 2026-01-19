@@ -4,19 +4,23 @@ import HumanitarianTable from './HumanitarianTable'
 import StatsCards from './StatsCards'
 import StateCorrelationAnalysis from './StateCorrelationAnalysis'
 import VulnerabilityIndex from './VulnerabilityIndex'
+import ClimateIndicators from './ClimateIndicators'
 import ExpandableCard from './ExpandableCard'
 import InfoTooltip from './InfoTooltip'
 import DashboardCounter from './DashboardCounter'
 import DataChat from './DataChat'
 import HelpIdeas from './HelpIdeas'
+import DataTransparency from './DataTransparency'
 import api from '../services/api'
 import './Dashboard.css'
 
 const TABS = [
   { id: 'overview', label: '📊 Overview', icon: '📊' },
   { id: 'vulnerability', label: '🔴 Vulnerability', icon: '🔴' },
+  { id: 'climate', label: '🌦️ Climate', icon: '🌦️' },
   { id: 'correlations', label: '📈 Correlations', icon: '📈' },
   { id: 'data', label: '📋 Data Table', icon: '📋' },
+  { id: 'transparency', label: '📚 Sources', icon: '📚' },
   { id: 'chat', label: '💬 Chat with Data', icon: '💬' },
   { id: 'help', label: '💡 What Can I Do?', icon: '💡' }
 ]
@@ -201,6 +205,13 @@ function Dashboard({ data, onRefresh }) {
           </div>
         )
 
+      case 'climate':
+        return (
+          <div className="dashboard-card">
+            <ClimateIndicators selectedState={selectedState} />
+          </div>
+        )
+
       case 'correlations':
         return (
           <div className="dashboard-card">
@@ -219,6 +230,13 @@ function Dashboard({ data, onRefresh }) {
               data={humanitarianData}
               selectedState={selectedState}
             />
+          </div>
+        )
+
+      case 'transparency':
+        return (
+          <div className="dashboard-card">
+            <DataTransparency data={data} />
           </div>
         )
 

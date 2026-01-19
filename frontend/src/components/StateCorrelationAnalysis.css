@@ -15,6 +15,106 @@
   gap: 0.5rem;
 }
 
+.correlation-header {
+  margin-bottom: 2rem;
+}
+
+.correlation-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.key-correlations-highlight {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.correlation-highlight-card {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.correlation-highlight-card h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.correlation-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.correlation-interpretation {
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+}
+
+.correlation-explanation {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.correlation-explanation strong {
+  color: var(--text-primary);
+}
+
+.correlation-citation {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.correlation-citation strong {
+  color: var(--text-primary);
+  font-style: normal;
+}
+
+.correlation-citation a {
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-left: 0.25rem;
+}
+
+.correlation-citation a:hover {
+  text-decoration: underline;
+}
+
+.methodology-citation {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  border-left: 4px solid var(--primary-color);
+}
+
+.methodology-citation strong {
+  color: var(--text-primary);
+}
+
 .correlation-explanation {
   background: var(--bg-tertiary);
   padding: 1rem;
@@ -200,5 +300,21 @@
 @media (max-width: 768px) {
   .factors-grid {
     grid-template-columns: 1fr;
+  }
+
+  .key-correlations-highlight {
+    grid-template-columns: 1fr;
+  }
+
+  .correlation-highlight-card {
+    padding: 1rem;
+  }
+
+  .correlation-value {
+    font-size: 1.5rem;
+  }
+
+  .correlation-subtitle {
+    font-size: 0.875rem;
   }
 }

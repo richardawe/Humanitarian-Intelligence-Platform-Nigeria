@@ -17,6 +17,11 @@ import {
 } from './stateIndicators.js';
 
 import { 
+  getAllClimateIndicators, 
+  getStateClimateIndicators 
+} from './climateIndicators.js';
+
+import { 
   getVulnerabilityIndexWithRankings, 
   getStateVulnerabilityIndex 
 } from './vulnerabilityIndex.js';
@@ -67,9 +72,34 @@ export const api = {
    */
   async getStateIndicators(state = null) {
     if (state) {
-      return getStateIndicators(state);
+      const indicators = getStateIndicators(state);
+      const climate = getStateClimateIndicators(state);
+      return {
+        ...indicators,
+        climate: climate
+      };
     }
-    return getAllStateIndicators();
+    const indicators = getAllStateIndicators();
+    const climateIndicators = getAllClimateIndicators();
+    
+    // Merge climate indicators
+    Object.keys(indicators).forEach(state => {
+      if (climateIndicators[state]) {
+        indicators[state].climate = climateIndicators[state];
+      }
+    });
+    
+    return indicators;
+  },
+
+  /**
+   * Get climate indicators
+   */
+  async getClimateIndicators(state = null) {
+    if (state) {
+      return getStateClimateIndicators(state);
+    }
+    return getAllClimateIndicators();
   },
 
   /**

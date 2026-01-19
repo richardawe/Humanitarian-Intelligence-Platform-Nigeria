@@ -329,6 +329,10 @@ export function getAllStateIndicators() {
   const importDependence = getImportDependenceByState();
   const infrastructure = getInfrastructureQualityByState();
 
+  // Import climate indicators (synchronous for now)
+  let climateIndicators = {};
+  // Climate indicators will be loaded separately to avoid circular dependencies
+
   const indicators = {};
 
   states.forEach(state => {
@@ -337,12 +341,28 @@ export function getAllStateIndicators() {
       foodInflation: {
         current: foodInflation[state] || null,
         source: 'NBS',
-        lastUpdate: '2025'
+        lastUpdate: '2025',
+        citation: 'National Bureau of Statistics (NBS), Food Inflation Reports 2024-2025'
       },
-      poverty: poverty[state] || null,
-      conflict: conflict[state] || null,
-      importDependence: importDependence[state] || null,
-      infrastructure: infrastructure[state] || null,
+      poverty: {
+        ...(poverty[state] || null),
+        citation: poverty[state] ? 
+          `UNDP Human Development Index 2023, ${poverty[state].mpi ? 'Multidimensional Poverty Index 2018-2019' : ''}` : 
+          null
+      },
+      conflict: {
+        ...(conflict[state] || null),
+        citation: 'ACLED (Armed Conflict Location & Event Data Project), UNOCHA Crisis Reports 2023-2024'
+      },
+      importDependence: {
+        ...(importDependence[state] || null),
+        citation: 'Estimated based on agricultural productivity, urbanization rates, and distance from ports'
+      },
+      infrastructure: {
+        ...(infrastructure[state] || null),
+        citation: 'UNDP Human Development Index 2023'
+      },
+      climate: climateIndicators[state] || null,
       timestamp: new Date().toISOString()
     };
   });
