@@ -6,7 +6,7 @@ export default defineConfig({
   // Base path for GitHub Pages deployment
   // Set to repository name if deploying to /repository-name/
   // Set to '/' if deploying to root or custom domain
-  base: process.env.NODE_ENV === 'production' ? '/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/Humanitarian-Intelligence-Platform-Nigeria/' : '/',
   server: {
     port: 3000
     // No proxy needed - all API calls are now client-side
